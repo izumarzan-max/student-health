@@ -25,21 +25,28 @@ export default function SleepPage() {
   const [end, setEnd] = useState('07:00');
   const [quality, setQuality] = useState(3);
 
-  const computeDuration = (d: string, s: string, e: string) => {
-    const st = new Date(`${d}T${s}:00`);
-    let en = new Date(`${d}T${e}:00`);
-    if (en <= st) en = new Date(en.getTime() + 86400000);
-    return Math.round((en.getTime() - st.getTime()) / 60000);
+  const getSleepTimes = (d: string, s: string, e: string) => {
+    const startAt = new Date(`${d}T${s}:00`);
+    const endAt = new Date(`${d}T${e}:00`);
+    if (e <= s) endAt.setDate(endAt.getDate() + 1);
+    return { startAt, endAt, duration: Math.round((endAt.getTime() - startAt.getTime()) / 60000) };
   };
 
   const save = async () => {
     if (!user) return;
-    const duration = computeDuration(date, start, end);
-    if (duration <= 0) { toast('Ұйықтау және ояну уақытын тексеріңіз.', 'error'); return; }
+    if (!date || !start || !end || start === end) {
+      toast('Ұйықтау және ояну уақытын тексеріңіз.', 'error');
+      return;
+    }
+    const { startAt, endAt, duration } = getSleepTimes(date, start, end);
+    if (!Number.isFinite(duration) || duration <= 0 || duration > 24 * 60) {
+      toast('Ұйқы ұзақтығы 24 сағаттан аспауы керек.', 'error');
+      return;
+    }
     const payload = {
       user_id: user.id, sleep_date: date,
-      start_time: new Date(`${date}T${start}:00`).toISOString(),
-      end_time: new Date(`${date}T${end}:00`).toISOString(),
+      start_time: startAt.toISOString(),
+      end_time: endAt.toISOString(),
       duration_minutes: duration, quality, id: editing?.id,
     };
     const { error } = editing

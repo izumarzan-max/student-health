@@ -6,7 +6,7 @@ import { fileURLToPath, URL } from 'node:url';
 export default defineConfig({
   envPrefix: ['VITE_', 'NEXT_PUBLIC_'],
   server: {
-    allowedHosts: ['sb-56nu0h8fmvjs.vercel.run'],
+    allowedHosts: ['sb-56nu0h8fmvjs.vercel.run', 'workspace-lnquunzx.v0.build', 'localhost'],
   },
   plugins: [react()],
   resolve: {
