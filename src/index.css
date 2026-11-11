@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: 246 248 245;
+  --card: 255 255 255;
+  --cream: 244 240 231;
+  --primary: 120 155 125;
+  --primary-dark: 53 91 69;
+  --primary-light: 230 239 229;
+  --ink: 38 52 43;
+  --muted: 112 125 115;
+  --line: 229 234 227;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: 17 25 21;
+  --card: 27 38 31;
+  --cream: 33 44 36;
+  --primary: 143 180 146;
+  --primary-dark: 157 193 160;
+  --primary-light: 42 61 47;
+  --ink: 235 241 235;
+  --muted: 166 179 168;
+  --line: 52 67 56;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+::selection {
+  color: rgb(var(--ink));
+  background: rgb(var(--primary) / 0.28);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(var(--muted) / 0.35); border-radius: 999px; border: 2px solid rgb(var(--bg)); }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--muted) / 0.55); }
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-card shadow-card transition-all duration-300; }
+  .card-hover { @apply hover:-translate-y-0.5 hover:shadow-cardhover; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-primary-dark text-white shadow-soft hover:bg-primary hover:shadow-md; }
+  .btn-secondary { @apply btn bg-primary-light text-primary-dark hover:bg-primary/20; }
+  .btn-ghost { @apply btn bg-transparent text-ink hover:bg-primary-light; }
+  .btn-danger { @apply btn border border-red-200 bg-red-50 text-red-700 hover:bg-red-100; }
+  .input { @apply w-full rounded-xl border border-line bg-card px-4 py-3 text-ink placeholder:text-ink-muted/60 transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40; }
+  .label { @apply mb-1.5 block text-sm font-medium text-ink; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium; }
+  .section-title { @apply font-display text-xl font-bold text-ink; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .grid-bg { background-image: radial-gradient(circle at 1px 1px, rgb(var(--primary-dark) / 0.08) 1px, transparent 0); background-size: 24px 24px; }
+}
+
+[data-theme='dark'] .bg-white { background-color: rgb(var(--card)); }
+[data-theme='dark'] .bg-cream { background-color: rgb(var(--cream)); }
+[data-theme='dark'] .text-white { color: #fff; }
+[data-theme='dark'] .bg-primary-dark.text-white { color: #142019; }
+[data-theme='dark'] .bg-white\/70 { background-color: rgb(var(--card) / 0.8); }
+[data-theme='dark'] .bg-blue-50 { background-color: #1d3443; }
+[data-theme='dark'] .text-blue-600,
+[data-theme='dark'] .text-blue-700 { color: #93c5fd; }
+[data-theme='dark'] .bg-emerald-50 { background-color: #203c2d; }
+[data-theme='dark'] .text-emerald-600,
+[data-theme='dark'] .text-emerald-700 { color: #86efac; }
+[data-theme='dark'] .bg-amber-50 { background-color: #42351e; }
+[data-theme='dark'] .text-amber-700,
+[data-theme='dark'] .text-amber-800 { color: #fcd34d; }
+[data-theme='dark'] .bg-rose-50,
+[data-theme='dark'] .bg-rose-100 { background-color: #462834; }
+[data-theme='dark'] .text-rose-600,
+[data-theme='dark'] .text-rose-700 { color: #fda4af; }
+[data-theme='dark'] .bg-amber-100 { background-color: #42351e; }
+[data-theme='dark'] .text-amber-600 { color: #fcd34d; }
+[data-theme='dark'] .bg-emerald-100 { background-color: #203c2d; }
+[data-theme='dark'] .text-emerald-600 { color: #86efac; }
+[data-theme='dark'] .bg-slate-100 { background-color: #2b3539; }
+[data-theme='dark'] .text-slate-500 { color: #cbd5e1; }
+[data-theme='dark'] .bg-indigo-50 { background-color: #292c4b; }
+[data-theme='dark'] .text-indigo-700 { color: #c7d2fe; }
+[data-theme='dark'] .bg-violet-50 { background-color: #35294c; }
+[data-theme='dark'] .text-violet-700 { color: #d8b4fe; }
+[data-theme='dark'] .bg-teal-50 { background-color: #1e3d3a; }
+[data-theme='dark'] .text-teal-700 { color: #5eead4; }
+[data-theme='dark'] .bg-red-50 { background-color: #48272b; }
+[data-theme='dark'] .text-red-600,
+[data-theme='dark'] .text-red-700 { color: #fda4af; }
+[data-theme='dark'] .border-red-200 { border-color: #77444a; }
