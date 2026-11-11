@@ -81,7 +81,7 @@ export default function MoodPage() {
             const m = MOOD_META[lv];
             const Icon = m.icon;
             return (
-              <button key={lv} onClick={() => { setEditing(null); setDate(todayISO()); setLevel(lv); setNote(''); setLevel(lv); saveInline(lv); }} className="flex flex-col items-center gap-1.5 rounded-xl py-4 bg-cream/40 hover:bg-cream transition">
+              <button key={lv} type="button" aria-label={`${m.label} көңіл күйін белгілеу`} onClick={() => { setEditing(null); setDate(todayISO()); setNote(''); saveInline(lv); }} className="flex flex-col items-center gap-1.5 rounded-xl py-4 bg-cream/40 hover:bg-cream transition">
                 <Icon className={`h-7 w-7 ${m.color}`} />
                 <span className="text-[10px] font-medium text-ink-muted">{m.label}</span>
               </button>
