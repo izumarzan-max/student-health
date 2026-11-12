@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Activity, BookOpen, HeartPulse, Home, LayoutDashboard, LogOut, Menu, Moon, Nut, Sparkles, User, Users, Droplets, Smile, BarChart3, X } from 'lucide-react';
+import { Activity, BookOpen, HeartPulse, Home, LayoutDashboard, LogOut, Menu, Moon, Nut, Sparkles, User, Droplets, Smile, BarChart3, X } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
@@ -46,8 +46,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       {/* Sidebar — mobile drawer */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div className="absolute inset-0 bg-ink/30 backdrop-blur-sm animate-fadeIn" onClick={() => setMobileOpen(false)} />
-          <aside className="relative w-64 bg-white flex flex-col animate-slideIn h-full">
+          <button type="button" aria-label="Мәзірді жабу" className="absolute inset-0 bg-ink/20 animate-fadeIn" onClick={() => setMobileOpen(false)} />
+          <aside className="relative w-64 bg-white flex flex-col animate-slideIn h-full shadow-2xl">
             <div className="flex justify-end p-3">
               <button onClick={() => setMobileOpen(false)} className="p-2 rounded-lg hover:bg-primary-light text-ink-muted">
                 <X className="h-5 w-5" />

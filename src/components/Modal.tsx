@@ -27,7 +27,7 @@ export function Modal({ open, onClose, title, children, footer, size = 'md' }: M
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <button type="button" aria-label="Модальді терезені жабу" className="absolute inset-0 bg-ink/20 animate-fadeIn" onClick={onClose} />
+      <button type="button" aria-label="Модальді терезені жабу" className="absolute inset-0 bg-ink/20 backdrop-blur-none animate-fadeIn" onClick={onClose} />
       <div role="dialog" aria-modal="true" aria-labelledby="modal-title" className={`relative card w-full ${sizes[size]} animate-scaleIn max-h-[90vh] overflow-hidden flex flex-col shadow-[0_24px_72px_rgba(20,44,35,0.25)]`}>
         <div className="flex items-center justify-between px-5 py-4 border-b border-line">
           <h3 id="modal-title" className="font-display font-bold text-ink">{title}</h3>
